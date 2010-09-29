@@ -45,33 +45,37 @@ module Google
         response = call_service(request)
 
         raise(GeocoderServerIsDown) if response.empty?
-        
-        raise(InvalidResponse, response['results']) if response['status'] != "OK" # success
  
-        root = response["results"][0]
-        address_components = root["address_components"]
-        geometry = root["geometry"]
-        
-        country = address_component(address_components, "country")
-        locality = address_component(address_components, "locality")
-        administrative_area_l1 = address_component(address_components, "administrative_area_level_1")
-        administrative_area_l2 = address_component(address_components, "administrative_area_level_2")
-                
-        latitude = geometry["location"]["lat"]
-        longitude = geometry["location"]["lng"]
+        if response['status'] == "ZERO_RESULTS"
+          []
+        else
+          raise(InvalidResponse, response['results']) if response['status'] != "OK" # success
 
-        puts "Country: #{country['long_name']} (#{country['short_name']})"
-        puts "Locality: #{locality['long_name']} (#{locality['short_name']})"
-        puts "Administrative Area (level 1): #{administrative_area_l1['long_name']} (#{administrative_area_l1['short_name']})"
-        puts "Administrative Area (level 2): #{administrative_area_l2['long_name']} (#{administrative_area_l2['short_name']})" unless administrative_area_l2.nil?
-                
-        puts "Latitude: #{latitude}"
-        puts "Longitude: #{longitude}" 
-        
-        [latitude, longitude]                       
+          root = response["results"][0]
+          address_components = root["address_components"]
+          geometry = root["geometry"]
+
+          country = address_component(address_components, "country")
+          locality = address_component(address_components, "locality")
+          administrative_area_l1 = address_component(address_components, "administrative_area_level_1")
+          administrative_area_l2 = address_component(address_components, "administrative_area_level_2")
+
+          latitude = geometry["location"]["lat"]
+          longitude = geometry["location"]["lng"]
+
+          puts "Country: #{country['long_name']} (#{country['short_name']})"
+          puts "Locality: #{locality['long_name']} (#{locality['short_name']})"
+          puts "Administrative Area (level 1): #{administrative_area_l1['long_name']} (#{administrative_area_l1['short_name']})"
+          puts "Administrative Area (level 2): #{administrative_area_l2['long_name']} (#{administrative_area_l2['short_name']})" unless administrative_area_l2.nil?
+
+          puts "Latitude: #{latitude}"
+          puts "Longitude: #{longitude}" 
+
+          [latitude, longitude]                               
+        end
       rescue OpenURI::HTTPError
         raise(GeocoderServerIsDown)
-      end
+      end          
     end
 
     private

@@ -31,9 +31,12 @@ class Geo
         puts "Version: #{File.open(File::dirname(__FILE__) + "/../VERSION").readlines().first}"
       when /(.*)/ then
          begin
-          @geocoder.query(query)
+          result = @geocoder.query(query)
+          
+          puts "No results." if result.size == 0
         rescue Exception => e
-          puts "Error: " + e.message
+          p e.class.name
+          puts "Error: " + e.message unless e.message.empty?
         end
     end
   end
