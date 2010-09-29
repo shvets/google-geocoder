@@ -1,0 +1,42 @@
+#!/usr/bin/env ruby
+
+$:.unshift(File::join(File::dirname(File::dirname(__FILE__)), "lib"))
+
+require 'rubygems' unless RUBY_VERSION =~ /1.9.*/
+require 'google_geocoder'
+
+#$KCODE='u'
+
+class Geo
+
+  USAGE= <<-TEXT
+    Usage:
+      geo russia moscow - returns geocode information for the provided location
+  TEXT
+
+  def initialize
+    @geocoder = Google::Geocoder.new
+  end
+
+  def run
+    if(ARGV.size == 0)
+      puts USAGE and return
+    end
+
+    query = ARGV.join(' ')
+    
+    case query
+
+      when /(-v)|(--version)/ then
+        puts "Version: #{File.open(File::dirname(__FILE__) + "/../VERSION").readlines().first}"
+      when /(.*)/ then
+         begin
+          @geocoder.query(query)
+        rescue Exception => e
+          puts "Error: " + e.message
+        end
+    end
+  end
+end
+
+Geo.new.run

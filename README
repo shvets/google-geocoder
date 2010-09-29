@@ -1,0 +1,11 @@
+= Google-Translate -- Client for Google Translate API
+
+= Installing Google-Translate
+
+== Installing the Gem
+    $ gem install google-geocoder
+
+== Usage
+
+    geo russia moscow  - returns geocode information for the provided location
+
