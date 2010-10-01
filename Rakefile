@@ -55,7 +55,7 @@ task :"release:gem" do
   puts "Commit message:"  
   message = STDIN.gets
 
-  version = "#{File.open(File::dirname(__FILE__) + "/VERSION").readlines().first}"
+  version = "#{File.open(File::dirname(__FILE__) + "/VERSION").readlines().first.strip}"
 
   %x(
     git commit -m "#{message}"
