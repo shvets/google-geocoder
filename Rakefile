@@ -9,34 +9,39 @@ require 'rcov/rcovtask'
 
 task :default => :gemspec
 
-begin
-  require 'bundler'
-  
   begin
-    require 'jeweler'
-    
-    Jeweler::Tasks.new do |gemspec|
-      gemspec.name = "google-geocoder"
-      gemspec.summary = "Simple client for Google Geocode API (Summary)."
-      gemspec.description = "Simple client for Google Geocode API."
-      gemspec.email = "alexander.shvets@gmail.com"
-      gemspec.homepage = "http://github.com/shvets/google-geocoder"
-      gemspec.authors = ["Alexander Shvets"]
-      gemspec.files = FileList["CHANGES", "google-geocoder.gemspec", "Rakefile", "README", "VERSION",
-                               "lib/**/*", "bin/**/*"]
-      gemspec.add_dependency "json_pure", ">= 1.1.4"   
+    require 'bundler'
 
-      gemspec.executables = ['geo', 'g']
-      gemspec.requirements = ["none"]
-      gemspec.bindir = "bin"
-    
-      gemspec.add_bundler_dependencies
+    begin
+      require 'jeweler'
+
+      Jeweler::Tasks.new do |gemspec|
+        gemspec.name = "google-geocoder"
+        gemspec.summary = "Simple client for Google Geocode API (Summary)."
+        gemspec.description = "Simple client for Google Geocode API."
+        gemspec.email = "alexander.shvets@gmail.com"
+        gemspec.homepage = "http://github.com/shvets/google-geocoder"
+        gemspec.authors = ["Alexander Shvets"]
+        gemspec.files = FileList["CHANGES", "google-geocoder.gemspec", "Rakefile", "README", "VERSION",
+                                 "lib/**/*", "bin/**/*"]
+
+        gemspec.executables = ['geo', 'g']
+        gemspec.requirements = ["none"]
+        gemspec.bindir = "bin"
+
+        gemspec.add_bundler_dependencies
+      end
+    rescue LoadError
+      puts "Jeweler not available. Install it s with: [sudo] gem install jeweler"
     end
   rescue LoadError
-    puts "Jeweler not available. Install it s with: [sudo] gem install jeweler"
+    puts "Bundler not available. Install it s with: [sudo] gem install bundler"
   end
-rescue LoadError
-  puts "Bundler not available. Install it s with: [sudo] gem install bundler"
+
+desc "Remove temp files"
+task "clean" do
+  `rm pkg`
+  `rm google-geocoder.gemspec`
 end
 
 desc "Release the gem"

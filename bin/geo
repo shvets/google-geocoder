@@ -3,7 +3,7 @@
 $:.unshift(File::join(File::dirname(File::dirname(__FILE__)), "lib"))
 
 require 'rubygems' unless RUBY_VERSION =~ /1.9.*/
-require 'google_geocoder'
+require 'google_geocoder/google_geocoder'
 
 #$KCODE='u'
 
@@ -23,15 +23,17 @@ class Geo
       puts USAGE and return
     end
 
-    query = ARGV.join(' ')
+    cmd_line = ARGV.join(' ')
     
-    case query
-
+    case cmd_line
       when /(-v)|(--version)/ then
         puts "Version: #{File.open(File::dirname(__FILE__) + "/../VERSION").readlines().first}"
+      when /(-open)/ then
+        query = cmd_line[5..-1].strip
+        @geocoder.open_in_browser(query)
       when /(.*)/ then
          begin
-          result = @geocoder.query(query)
+          result = @geocoder.query(cmd_line)
           
           puts "No results." if result.size == 0
         rescue Exception => e

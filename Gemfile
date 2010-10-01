@@ -1,6 +1,7 @@
 source 'http://rubygems.org'
 
-gem "json_pure"
+gem "json_pure", "~>1.1.4"
+gem "launchy"
 
 group :development do
   gem "jeweler"
