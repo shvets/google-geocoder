@@ -2,13 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b346cd5a-6736-4b1c-a020-29b2c8f99b92" name="Default" comment="">
-      <change type="MOVED" beforePath="$PROJECT_DIR$/lib/google_geocoder.rb" afterPath="$PROJECT_DIR$/lib/google_geocoder/google_geocoder.rb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CHANGES" afterPath="$PROJECT_DIR$/CHANGES" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Gemfile" afterPath="$PROJECT_DIR$/Gemfile" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Rakefile" afterPath="$PROJECT_DIR$/Rakefile" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/VERSION" afterPath="$PROJECT_DIR$/VERSION" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/geo" afterPath="$PROJECT_DIR$/bin/geo" />
     </list>
     <ignored path="google-geocoder.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -50,7 +45,7 @@
       <file leaf-file-name="Rakefile" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Rakefile">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="65" column="63" selection-start="1697" selection-end="1697" vertical-scroll-proportion="0.5360134">
+            <state line="64" column="47" selection-start="1687" selection-end="1687" vertical-scroll-proportion="0.50921273">
               <folding />
             </state>
           </provider>
@@ -389,7 +384,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Rakefile">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="65" column="63" selection-start="1697" selection-end="1697" vertical-scroll-proportion="0.5360134">
+        <state line="64" column="47" selection-start="1687" selection-end="1687" vertical-scroll-proportion="0.50921273">
           <folding />
         </state>
       </provider>

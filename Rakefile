@@ -62,7 +62,7 @@ task :"release:gem" do
     
     git push origin master
 
-    gem push pkg/google-geocoder-#{version}.gem      
+    gem push pkg/google-geocoder-#{version}.gem
   )
 end
 
